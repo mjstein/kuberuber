@@ -1,0 +1,14 @@
+{
+  "name": "chmjs-kubernetes",
+  "version": "0.3.0",
+  "author": "chmjs",
+  "summary": "Early implementation to setup a kubernetes master and minion",
+  "license": "Apache-2.0",
+  "source": "https://github.com/mjstein/mjs-kubernetes.git",
+  "project_page": "https://github.com/mjstein/mjs-kubernetes.git",
+  "issues_url": null,
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+

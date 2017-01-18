@@ -1,0 +1,6 @@
+registry:
+  restart: always
+  image: registry:2
+  ports:
+    - 5000:5000
+      # add insecure reg and registry flags do all docker config files, restart deamon

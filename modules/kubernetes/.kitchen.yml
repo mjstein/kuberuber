@@ -1,0 +1,18 @@
+---
+  driver:
+    name: vagrant
+    require_chef_omnibus: false
+  provisioner:
+    name: puppet_apply
+    manifests_path: ./manifests
+    modules_path: ./modules
+    hiera_data_path: .
+
+  platforms:
+   - name: master
+     driver_plugin: vagrant
+     driver_config:
+       box: centos-6.6-x86_64.box
+       box_url: https://github.com/tommy-muehle/puppet-vagrant-boxes/releases/download/1.0.0/centos-6.6-x86_64.box 
+  suites:
+   - name: default

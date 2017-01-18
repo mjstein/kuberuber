@@ -1,0 +1,19 @@
+{
+    "kind": "Service",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "rubyapp-service"
+    },
+    "spec": {
+        "selector": {
+            "type": "dev"
+        },
+        "ports": [
+            {
+                "protocol": "TCP",
+                "port": 8070,
+                "targetPort": 80 
+            }
+        ]
+    }
+}

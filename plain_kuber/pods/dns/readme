@@ -1,0 +1,7 @@
+NOTE A few things. 
+KUBEDNS has the ip of the kubeapi
+NOTE ALSO THAT THE DOMAIN IS CONSISTANT and needs to be placed in the kubelet config as so:
+KUBELET_ARGS="--cluster-dns=10.254.0.2 --cluster-domain=k8s.local" for all nodes
+not that cluster dns is the name of the service created. and cluster-domain is the domain name used in our confi
+Dont forget that the cluster services and pods will need to be restarted!
+

@@ -1,0 +1,83 @@
+#[member]
+ETCD_NAME="<%= scope['etcd::etcd_name'] %>"
+ETCD_DATA_DIR="<%= scope['etcd::data_dir'] %>"
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::wal_dir']) -%>
+ETCD_WAL_DIR="<%= scope['etcd::wal_dir'] %>"
+<% end -%>
+ETCD_SNAPSHOT_COUNT="<%= scope['etcd::snapshot_count'] %>"
+ETCD_HEARTBEAT_INTERVAL="<%= scope['etcd::heartbeat_interval'] %>"
+ETCD_ELECTION_TIMEOUT="<%= scope['etcd::election_timeout'] %>"
+ETCD_LISTEN_CLIENT_URLS="<%= Array(scope['etcd::listen_client_urls']).join(',') %>"
+ETCD_ADVERTISE_CLIENT_URLS="<%= Array(scope['etcd::advertise_client_urls']).join(',') %>"
+ETCD_MAX_SNAPSHOTS="<%= scope['etcd::max_snapshots'] %>"
+ETCD_MAX_WALS="<%= scope['etcd::max_wals'] %>"
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::cors']) -%>
+ETCD_CORS="<%= Array(scope['etcd::cors']).join(',') %>"
+<% end -%>
+#
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::real_proxy']) and scope['etcd::real_proxy'] != 'off' -%>
+#[proxy]
+ETCD_PROXY="<%= scope['etcd::real_proxy'] %>"
+ETCD_PROXY_FAILURE_WAIT="<%= scope['etcd::proxy_failure_wait'] %>"
+ETCD_PROXY_REFRESH_INTERVAL="<%= scope['etcd::proxy_refresh_interval'] %>"
+ETCD_PROXY_DIAL_TIMEOUT="<%= scope['etcd::proxy_dial_timeout'] %>"
+ETCD_PROXY_WRITE_TIMEOUT="<%= scope['etcd::proxy_write_timeout'] %>"
+ETCD_PROXY_READ_TIMEOUT="<%= scope['etcd::proxy_read_timeout'] %>"
+#
+<% end -%>
+<% if scope['etcd::cluster_enabled'] %>
+#[cluster]
+ETCD_LISTEN_PEER_URLS="<%= Array(scope['etcd::listen_peer_urls']).join(',') %>"
+ETCD_INITIAL_ADVERTISE_PEER_URLS="<%= Array(scope['etcd::initial_advertise_peer_urls']).join(',') %>"
+ETCD_INITIAL_CLUSTER="<%= Array(scope['etcd::initial_cluster']).join(',') %>"
+ETCD_INITIAL_CLUSTER_STATE="<%= scope['etcd::initial_cluster_state'] %>"
+ETCD_INITIAL_CLUSTER_TOKEN="<%= scope['etcd::initial_cluster_token'] %>"
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::discovery']) -%>
+ETCD_DISCOVERY="<%= scope['etcd::discovery'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::discovery_srv']) -%>
+ETCD_DISCOVERY_SRV="<%= scope['etcd::discovery_srv'] %>"
+<% end -%>
+ETCD_DISCOVERY_FALLBACK="<%= scope['etcd::discovery_fallback'] %>"
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::discovery_proxy']) -%>
+ETCD_DISCOVERY_PROXY="<%= scope['etcd::discovery_proxy'] %>"
+<% end -%>
+ETCD_STRICT_RECONFIG_CHECK=<%= scope['etcd::strict_reconfig_check'] %>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::auto_compaction_retention']) -%>
+ETCD_AUTO_COMPACTION_RETENTION="<%= scope['etcd::auto_compaction_retention'] %>"
+<% end -%>
+#
+<% end %>
+#[security]
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::cert_file']) -%>
+ETCD_CERT_FILE="<%= scope['etcd::cert_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::key_file']) -%>
+ETCD_KEY_FILE="<%= scope['etcd::key_file'] %>"
+<% end -%>
+ETCD_CLIENT_CERT_AUTH=<%= scope['etcd::client_cert_auth'] %>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::trusted_ca_file']) -%>
+ETCD_TRUSTED_CA_FILE="<%= scope['etcd::trusted_ca_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::auto_tls']) -%>
+ETCD_AUTO_TLS="<%= scope['etcd::auto_tls'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::peer_cert_file']) -%>
+ETCD_PEER_CERT_FILE="<%= scope['etcd::peer_cert_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::peer_key_file']) -%>
+ETCD_PEER_KEY_FILE="<%= scope['etcd::peer_key_file'] %>"
+<% end -%>
+ETCD_PEER_CLIENT_CERT_AUTH=<%= scope['etcd::peer_client_cert_auth'] %>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::peer_trusted_ca_file']) -%>
+ETCD_PEER_TRUSTED_CA_FILE="<%= scope['etcd::peer_trusted_ca_file'] %>"
+<% end -%>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::peer_auto_tls']) -%>
+ETCD_PEER_AUTO_TLS="<%= scope['etcd::peer_auto_tls'] %>"
+<% end -%>
+#
+#[logging]
+ETCD_DEBUG=<%= scope['etcd::debug'] %>
+<% unless [nil, :undefined, :undef, ''].include?(scope['etcd::log_package_levels']) -%>
+ETCD_LOG_PACKAGE_LEVELS="<%= scope['etcd::log_package_levels'] %>"
+<% end -%>
