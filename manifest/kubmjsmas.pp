@@ -30,11 +30,11 @@ exec{'docker push 192.168.50.4:5000/ruby_app:2':
 
     exec{'kubectl create -f /vagrant/plain_kuber/pods/dns/skydnssvc.yaml':
       path  => ['/bin'],
-      require =>  [Class['kubernetes::master'],Exec['docker push 192.168.50.4:5000/ruby_app:2']]
+      require =>  Class['kubernetes::master']
     }
     exec{'kubectl create -f /vagrant/plain_kuber/pods/dns/skydnsrc.yaml':
       path  => ['/bin'],
-      require =>  [Class['kubernetes::master'],Exec['docker push 192.168.50.4:5000/ruby_app:2']]
+      require =>  Class['kubernetes::master']
     }
 
     exec{'kubectl create -f /vagrant/plain_kuber/pods/ruby_web/ruby_web.yaml':
@@ -45,4 +45,9 @@ exec{'docker push 192.168.50.4:5000/ruby_app:2':
     exec{'kubectl create -f /vagrant/plain_kuber/pods/ruby_web/ruby_web_service.yaml':
       path  => ['/bin'],
       require =>  [Class['kubernetes::master'],Exec['docker push 192.168.50.4:5000/ruby_app:2']]
+    }
+
+    exec{'kubectl create -f /vagrant/plain_kuber/pods/dashboard/kubernetes-dashboard.yaml':
+      path  => ['/bin'],
+      require =>  Class['kubernetes::master'],
     }
