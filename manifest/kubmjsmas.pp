@@ -1,6 +1,7 @@
 class { 'docker':
-    package_name => 'docker-1.10.3-59.el7.centos.x86_64', 
-    extra_parameters => "--insecure-registry 192.168.50.4:5000",
+    package_name               => 'docker-1.10.3-59.el7.centos.x86_64', 
+    extra_parameters           => "--insecure-registry 192.168.50.4:5000",
+    service_overrides_template =>  false,
 }
 contain 'docker'
 docker::image { 'registry:2':
