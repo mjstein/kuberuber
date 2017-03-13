@@ -1,0 +1,13 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadWriteMany
+  nfs:
+   server: 192.168.50.4
+   path: "/data_folder"
+  resources:
+    requests:
+      storage: 1Mi

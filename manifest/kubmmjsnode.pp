@@ -11,3 +11,10 @@ class { 'docker':
       kubelet_args                     => "--cluster-dns=10.254.0.2 --cluster-domain=k8s.local",
     }
     contain 'kubernetes'
+    # mount nfs mounts
+      class { '::nfs':
+        client_enabled =>  true,
+      }
+      nfs::client::mount { '/data_folder':
+        server =>  '192.168.50.4',
+      }

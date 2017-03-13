@@ -29,6 +29,22 @@ exec{'docker push 192.168.50.4:5000/ruby_app:2':
     }
     contain 'kubernetes::master'
 
+
+    # add in nfs mounts for volumes
+    file{'/data_folder':
+      ensure => directory,
+      mode   =>  "0777",
+    }
+			class { '::nfs':
+				server_enabled => true,
+        client_enabled => true,
+			}
+			nfs::server::export{ '/data_folder':
+				ensure  => 'mounted',
+				clients => '*(rw,insecure,async,no_root_squash) localhost(rw)'
+			}
+      Nfs::Client::Mount <<| |>>
+
     exec{'kubectl create -f /vagrant/plain_kuber/pods/dns/skydnssvc.yaml':
       path  => ['/bin'],
       require =>  Class['kubernetes::master']
