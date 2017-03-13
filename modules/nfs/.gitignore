@@ -1,0 +1,10 @@
+.idea
+Gemfile.lock
+.bundle
+fixtures/manifests/*
+fixtures/modules/*
+vendor/
+.vendor/
+spec/fixtures/
+pkg/
+log/
