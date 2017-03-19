@@ -1,0 +1,8 @@
+for helm use 
+v2.1.0 to get the correct version for out kub cluster
+then add 
+env:
+        - name: KUBERNETES_MASTER
+          value: 192.168.50.4:8080
+          to the pod we have printed out with
+          ./helm init --dry-run --debug > A.yaml
