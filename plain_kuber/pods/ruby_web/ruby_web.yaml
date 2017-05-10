@@ -8,9 +8,11 @@ spec:
     metadata:
       labels: 
         type: dev
+        version: '1.0'
+        app: rubyapp
     spec:
       containers:
       - name: rubydev
-        image: 192.168.50.4:5000/ruby_app:2
+        image: 10.74.50.108:5000/ruby_app:2
         ports:
         - containerPort: 8080
