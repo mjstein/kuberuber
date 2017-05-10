@@ -7,7 +7,6 @@ class { 'docker':
        master_name                      => '10.74.50.108', #can be hostname if dns setup
        minion_name                      => '10.74.50.79', #can be hostname if dns setup
        manage_docker                    => false,
-       alternate_flannel_interface_bind =>  'eth1',
       kubelet_args                     => "--cluster-dns=10.254.0.2 --cluster-domain=k8s.local",
     }
     contain 'kubernetes'
